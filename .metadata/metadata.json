@@ -1,0 +1,13 @@
+{
+  "name" : "BPM-BAH compatch",
+  "id" : "BPM-BAH",
+  "version" : "0.1",
+  "supported_game_version" : "1.7.5",
+  "short_description" : "Compatibility patch for Better Politics Mod and Better Austria-Hungary",
+  "tags" : [],
+  "picture": "thumbnail.png",
+  "relationships" : [],
+  "game_custom_data" : {
+    "multiplayer_synchronized" : true
+  }
+}
