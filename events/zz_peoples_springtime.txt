@@ -1,0 +1,322 @@
+namespace = peoples_springtime
+
+# Austrosplosion chain starts
+peoples_springtime.9 = {
+	type = country_event
+
+	event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	title = peoples_springtime.9.t
+	desc = peoples_springtime.9.d
+
+	duration = 3
+
+	dlc = dlc_bpm
+
+	option = {
+		name = peoples_springtime.9.a #lmao no
+		default_option = yes
+		ai_chance = {
+			base = 75
+		}
+
+		trigger_event = { 
+			id = peoples_springtime.10
+			days = 30
+			popup = yes 
+		}
+	}
+
+	option = {
+		name = peoples_springtime.9.b #franticly negotiate
+		ai_chance = {
+			base = 25
+		}
+
+		custom_tooltip = {
+			text = bpm_hungary_union
+		}
+		
+		s:STATE_TRANSDANUBIA = {
+			remove_homeland = cu:south_german
+		}
+		c:AUS = {
+			activate_law = law_type:law_federated
+		}
+		
+		hidden_effect = {
+			create_country = {
+				tag = HUN
+				origin = c:AUS
+				state = s:STATE_CENTRAL_HUNGARY.region_state:AUS
+			}
+			s:STATE_TRANSDANUBIA.region_state:AUS = { set_state_owner = c:HUN set_state_type = incorporated}
+			s:STATE_BEKES.region_state:AUS = { set_state_owner = c:HUN set_state_type = incorporated}
+			s:STATE_BANAT.region_state:AUS = { set_state_owner = c:HUN set_state_type = incorporated}
+			s:STATE_DELVIDEK.region_state:AUS = { set_state_owner = c:HUN set_state_type = incorporated}
+			s:STATE_WEST_SLOVAKIA.region_state:AUS = { set_state_owner = c:HUN set_state_type = incorporated}
+			s:STATE_EAST_SLOVAKIA.region_state:AUS = { set_state_owner = c:HUN set_state_type = incorporated}
+			s:STATE_NORTHERN_TRANSYLVANIA.region_state:AUS = { set_state_owner = c:HUN set_state_type = incorporated}
+			s:STATE_SOUTHERN_TRANSYLVANIA.region_state:AUS = { set_state_owner = c:HUN set_state_type = incorporated}
+			s:STATE_SLAVONIA.region_state:AUS = { set_state_owner = c:HUN set_state_type = incorporated}
+			s:STATE_CROATIA.region_state:AUS = { set_state_owner = c:HUN set_state_type = incorporated}
+			c:HUN = {
+				bpm_setup_country = yes
+			}
+			
+			every_country = {
+				limit = { bpm_country_is_in_europe = yes }
+				post_notification = bpm_1848_ausgleich
+			}
+		}
+		create_diplomatic_pact = {
+			country = c:HUN
+			type = personal_union
+		}
+		trigger_event = { 
+			id = peoples_springtime.11
+			days = 120
+			popup = yes 
+		}
+	}
+}
+
+# hun revolution
+peoples_springtime.10 = {
+	type = country_event
+
+	event_image = {
+		video = "europenorthamerica_political_extremism"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	title = peoples_springtime.10.t
+	desc = peoples_springtime.10.d
+	flavor = peoples_springtime.10.f
+
+	duration = 2
+
+	dlc = dlc_bpm
+
+	immediate = {
+		set_variable = bpm_hungarian_revolution_started
+		s:STATE_TRANSDANUBIA = {
+				remove_homeland = cu:south_german
+		}
+
+		create_country = {
+				tag = HUN
+				origin = c:AUS
+				state = s:STATE_CENTRAL_HUNGARY.region_state:AUS
+		}
+
+		s:STATE_TRANSDANUBIA.region_state:AUS = { set_state_owner = c:HUN set_state_type = incorporated}
+		s:STATE_BEKES.region_state:AUS = { set_state_owner = c:HUN set_state_type = incorporated}
+		s:STATE_BANAT.region_state:AUS = { set_state_owner = c:HUN set_state_type = incorporated}
+		s:STATE_DELVIDEK.region_state:AUS = { set_state_owner = c:HUN set_state_type = incorporated}
+		s:STATE_WEST_SLOVAKIA.region_state:AUS = { set_state_owner = c:HUN set_state_type = incorporated}
+		s:STATE_EAST_SLOVAKIA.region_state:AUS = { set_state_owner = c:HUN set_state_type = incorporated}
+		s:STATE_NORTHERN_TRANSYLVANIA.region_state:AUS = { set_state_owner = c:HUN set_state_type = incorporated}
+		s:STATE_SOUTHERN_TRANSYLVANIA.region_state:AUS = { set_state_owner = c:HUN set_state_type = incorporated}
+
+		c:HUN = {
+			activate_law = law_type:law_devolved
+			activate_law = law_type:law_presidential_republic
+			activate_law = law_type:law_elected_bureaucrats
+			activate_law = law_type:law_census_voting
+			activate_law = law_type:law_right_of_assembly
+			activate_law = law_type:law_total_separation
+			activate_law = law_type:law_cultural_exclusion
+			activate_law = law_type:law_national_guard
+			activate_law = law_type:law_per_capita_based_taxation
+			activate_law = law_type:law_professional_army
+			activate_law = law_type:law_professional_officers
+			bpm_setup_country = yes
+		}
+	}
+
+	option = {
+		name = peoples_springtime.10.a
+		default_option = yes
+
+		create_diplomatic_play = {
+			name = hungarian_revolution
+			type = dp_annex_war
+			escalation = 80
+			target_state = s:STATE_TRANSDANUBIA.region_state:HUN
+		}
+		random_diplomatic_play = {
+				limit = {
+					any_scope_play_involved = {
+						c:HUN ?= this
+					}
+				}
+				if = {
+					limit = {
+						exists = s:STATE_SLAVONIA.region_state:AUS 
+					}
+					add_war_goal = {
+						holder = c:HUN
+						type = conquer_state
+						target_state = s:STATE_SLAVONIA.region_state:AUS
+					}
+				}
+				if = {
+					limit = {
+						exists = s:STATE_CROATIA.region_state:AUS 
+					}
+					add_war_goal = {
+						holder = c:HUN
+						type = conquer_state
+						target_state = s:STATE_CROATIA.region_state:AUS
+					}
+				}
+		}
+		hidden_effect = {
+			change_infamy = -250
+			trigger_event = { 
+				id = peoples_springtime.11
+				days = 90
+				popup = yes 
+			}
+			every_country = {
+				limit = { bpm_country_is_in_europe = yes }
+				post_notification = bpm_1848_hungarian_revolution
+			}
+		}
+	}
+	option = {
+		name = peoples_springtime.10.b
+		trigger = { is_player = yes }
+
+		play_as = c:HUN
+	}
+}
+
+peoples_springtime.13 = {
+	type = country_event
+
+	event_image = {
+		video = "europenorthamerica_capitalists_meeting"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	title = {
+		first_valid = {
+			triggered_desc = {
+				desc = peoples_springtime.13.t
+				trigger = {
+					NOT = { owns_entire_state_region = STATE_CENTRAL_HUNGARY }
+				}
+			}
+			triggered_desc = {
+				desc = peoples_springtime.13.t2
+				trigger = {
+					owns_entire_state_region = STATE_CENTRAL_HUNGARY
+				}
+			}
+		}
+	}
+	
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				desc = peoples_springtime.13.d
+				trigger = {
+					NOT = { owns_entire_state_region = STATE_CENTRAL_HUNGARY }
+				}
+			}
+			triggered_desc = {
+				desc = peoples_springtime.13.d2
+				trigger = {
+					owns_entire_state_region = STATE_CENTRAL_HUNGARY
+				}
+			}
+		}
+	}
+
+	flavor = {
+		first_valid = {
+			triggered_desc = {
+				desc = peoples_springtime.13.f
+				trigger = {
+					NOT = { owns_entire_state_region = STATE_CENTRAL_HUNGARY }
+				}
+			}
+			triggered_desc = {
+				desc = peoples_springtime.13.f2
+				trigger = {
+					owns_entire_state_region = STATE_CENTRAL_HUNGARY
+				}
+			}
+		}
+	}
+
+	duration = 1
+
+	dlc = dlc_bpm
+
+	trigger = {
+		has_variable = bpm_hungarian_revolution_started
+		NOT = { has_variable = bpm_austria_empire_dissolved }
+		owner = {
+			is_at_war = no
+			is_diplomatic_play_initiator = no
+		}
+	}
+
+	immediate = {
+		remove_variable = bpm_hungarian_revolution_started
+		if = {
+			limit = {
+				NOT = { owns_entire_state_region = STATE_CENTRAL_HUNGARY }
+			}
+			create_country = {
+				tag = GAL
+				origin = c:AUS
+				state = s:STATE_EAST_GALICIA.region_state:AUS
+			}
+			s:STATE_WEST_GALICIA.region_state:AUS = { set_state_owner = c:GAL set_state_type = incorporated}
+			s:STATE_MOLDAVIA.region_state:AUS = { set_state_owner = c:GAL set_state_type = incorporated}
+			set_variable = bpm_austria_empire_dissolved
+			c:GAL = {
+				bpm_setup_country = yes
+			}
+			hidden_effect = {
+				create_diplomatic_pact = {
+					country = c:GAL
+					type = personal_union
+				}
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			NOT = { owns_entire_state_region = STATE_CENTRAL_HUNGARY }
+		}
+		name = peoples_springtime.13.a #release galicia
+
+		custom_tooltip = {
+			text = bpm_gl_union
+		}
+	}
+	option = {
+		trigger = {
+			owns_entire_state_region = STATE_CENTRAL_HUNGARY
+		}
+		name = peoples_springtime.13.b #the hungarian revolution is defeated
+	}
+}

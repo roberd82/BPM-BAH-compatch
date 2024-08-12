@@ -1,0 +1,179 @@
+﻿namespace = betterah_hungary
+
+betterah_hungary.1 = { # on liberal revolution option to accept demands and enact April Laws
+	type = country_event
+
+	title = betterah_hungary.1.t
+	desc = betterah_hungary.1.d
+	flavor = betterah_hungary.1.f
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_ruler_speaking_to_people.bk2"
+	}
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/leader_speaking_to_a_group_of_people"
+
+	duration = 3
+
+	trigger = {
+		# triggered by revolution start on_action
+		is_direct_subject_of = c:AUS  # we need to be subject to austria
+		NOT = {
+			is_diplomatic_play_enemy_of = c:AUS
+		}
+		scope:target = { # make sure we only do this if the revolution is progressive
+			any_interest_group = {
+				leader = { 
+					OR = {
+						has_ideology = ideology:ideology_republican_leader
+						has_ideology = ideology:ideology_radical
+						has_ideology = ideology:ideology_reformer
+						has_ideology = ideology:ideology_social_democrat
+						has_ideology = ideology:ideology_communist
+						has_ideology = ideology:ideology_vanguardist
+						has_ideology = ideology:ideology_anarchist
+					}
+				}
+			}
+		}
+	}
+
+	option = { # accept the revolt and enact April Laws
+		name = betterah_hungary.1.a
+		default_option = yes
+		
+		play_as = scope:target # we switch to the revolt
+		scope:target = {
+			scope:diplomatic_play = {
+				resolve_play_for = scope:target  # we make the revolt win the revolution
+			}
+		}
+		c:AUS = {
+			create_diplomatic_pact = { #We have to make Hungary a subject again cause the revolution frees it by default
+				country = c:HUN
+				type = personal_union
+			}
+			trigger_event = {
+				id = dual_monarchy.3  # Austria will get a chance to intervene
+				months = 5 # 5 months plus diplo play length to stabilize your country to do that before you fight
+			}
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+	option = { # don't accept demands
+		name = betterah_hungary.1.b
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+
+betterah_hungary.2 = { # Austria wants us to remove our liberal igs from government
+	type = country_event
+
+	title = betterah_hungary.2.t
+	desc = betterah_hungary.2.d
+	flavor = betterah_hungary.2.f
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_ruler_speaking_to_people.bk2"
+	}
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/leader_speaking_to_a_group_of_people"
+
+	duration = 3
+
+	trigger = {
+		# triggered by betterah_control_hungarian_government_decision
+		is_direct_subject_of = c:AUS  # we need to be subject to austria
+		NOT = {
+			is_diplomatic_play_enemy_of = c:AUS
+		}
+	}
+
+	option = { # accept the demand
+		name = betterah_hungary.2.a
+		default_option = yes
+		
+		random_interest_group = {  # get a random non-liberal interest group
+			limit = {
+				is_marginal = no
+				leader = {
+					NOT = {
+						OR = {
+							has_ideology = ideology:ideology_republican_leader
+							has_ideology = ideology:ideology_radical
+							has_ideology = ideology:ideology_reformer
+							has_ideology = ideology:ideology_social_democrat
+							has_ideology = ideology:ideology_communist
+							has_ideology = ideology:ideology_vanguardist
+							has_ideology = ideology:ideology_anarchist
+						}
+					}
+				}
+			}
+			add_ruling_interest_group = yes #put them in govt
+		}
+		
+		every_interest_group = { # get every liberal IG
+			limit = {
+				leader = {
+					OR = {
+						has_ideology = ideology:ideology_republican_leader
+						has_ideology = ideology:ideology_radical
+						has_ideology = ideology:ideology_reformer
+						has_ideology = ideology:ideology_social_democrat
+						has_ideology = ideology:ideology_communist
+						has_ideology = ideology:ideology_vanguardist
+						has_ideology = ideology:ideology_anarchist
+					}
+				}
+			}
+			remove_ruling_interest_group = yes #kick them out
+		}
+		
+		add_modifier = {
+			name = forced_regime_change # this should hopefully stop hungary from switching the IGs back in
+			months = normal_modifier_time
+		}
+		
+		#add_ruling_interest_group - Adds interest group to government
+		#add_ruling_interest_group = yes/no
+		#Supported Scopes: interest_group
+		
+		add_radicals = { # hungarians are angry we gave in
+			value = large_radicals
+			culture = cu:hungarian
+		}
+
+		ai_chance = {
+			base = 2
+		}
+	}
+	option = { # don't accept demands and prepare for war
+		name = betterah_hungary.2.b
+		c:AUS = {
+			remove_modifier = modifier_hungary_curtailed # remove the modifier from austria, since they are not curtailing us anymore
+			trigger_event = {
+				id = dual_monarchy.2 # they will have a chance to declare a diplo play against us
+				days = 0
+			}
+		}
+		ai_chance = {
+			base = 0
+			modifier = {
+				trigger = { army_size < c:AUS.army_size }
+				add = 2
+			}
+		}
+	}
+}
