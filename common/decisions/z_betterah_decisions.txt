@@ -11,13 +11,8 @@ betterah_control_hungarian_government_decision = {  # remove the liberals from t
 				is_in_government = yes
 				leader = {
 					OR = {
-						has_ideology = ideology:ideology_republican_leader
-						has_ideology = ideology:ideology_radical
-						has_ideology = ideology:ideology_reformer
-						has_ideology = ideology:ideology_social_democrat
-						has_ideology = ideology:ideology_communist
-						has_ideology = ideology:ideology_vanguardist
-						has_ideology = ideology:ideology_anarchist
+						bpm_leader_is_liberal = yes
+						bpm_leader_is_socialist = yes
 					}
 				}
 			}
