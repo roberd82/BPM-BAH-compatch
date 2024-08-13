@@ -19,41 +19,66 @@ betterah_hungary.1 = { # on liberal revolution option to accept demands and enac
 	duration = 3
 
 	trigger = {
-		# triggered by revolution start on_action
+		# triggered by revolution start on_action or je_springtime_of_the_peoples
 		is_direct_subject_of = c:AUS  # we need to be subject to austria
 		NOT = {
 			is_diplomatic_play_enemy_of = c:AUS
 		}
-		scope:target = { # make sure we only do this if the revolution is progressive
-			any_interest_group = {
-				leader = { 
-					OR = {
-						bpm_leader_is_liberal = yes
-						bpm_leader_is_socialist = yes
+		OR = {
+			has_global_variable = peoples_springtime_happening
+			scope:target = { # make sure we only do this if the revolution is progressive
+				any_interest_group = {
+					leader = { 
+						OR = {
+							bpm_leader_is_liberal = yes
+							bpm_leader_is_socialist = yes
+						}
 					}
 				}
 			}
 		}
 	}
 
-	option = { # accept the revolt and enact April Laws
+	option = { # accept the revolution and enact April Laws
 		name = betterah_hungary.1.a
 		default_option = yes
-		
-		play_as = scope:target # we switch to the revolt
-		scope:target = {
-			scope:diplomatic_play = {
-				resolve_play_for = scope:target  # we make the revolt win the revolution
+
+		c:AUS = {
+			set_variable = bpm_hungarian_revolution_started
+		}
+
+		if = {
+			limit = {
+				NOT = { has_global_variable = peoples_springtime_happening }
+			}
+			play_as = scope:target # we switch to the revolt
+			scope:target = {
+				scope:diplomatic_play = {
+					resolve_play_for = scope:target  # we make the revolt win the revolution
+				}
+			}
+			c:AUS = {
+				create_diplomatic_pact = { #We have to make Hungary a subject again cause the revolution frees it by default
+					country = c:HUN
+					type = personal_union
+				}
 			}
 		}
+
+		c:HUN = { # April Laws
+			activate_law = law_type:law_census_voting
+			activate_law = law_type:law_homesteading
+			activate_law = law_type:law_per_capita_based_taxation
+			activate_law = law_type:law_interventionism
+			activate_law = law_type:law_elected_bureaucrats
+			activate_law = law_type:law_national_guard
+			activate_law = law_type:law_right_of_assembly
+		}
+		
 		c:AUS = {
-			create_diplomatic_pact = { #We have to make Hungary a subject again cause the revolution frees it by default
-				country = c:HUN
-				type = personal_union
-			}
 			trigger_event = {
-				id = dual_monarchy.3  # Austria will get a chance to intervene
-				months = 5 # 5 months plus diplo play length to stabilize your country to do that before you fight
+				id = peoples_springtime.9  # Austria will get a chance to intervene
+				days = 30
 			}
 		}
 		ai_chance = {
@@ -67,7 +92,6 @@ betterah_hungary.1 = { # on liberal revolution option to accept demands and enac
 		}
 	}
 }
-
 
 betterah_hungary.2 = { # Austria wants us to remove our liberal igs from government
 	type = country_event

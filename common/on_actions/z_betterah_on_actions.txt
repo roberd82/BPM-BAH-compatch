@@ -1,0 +1,39 @@
+﻿betterah_hungarian_revolution_on_action = {
+	effect = {
+		c:AUS = {
+			if = {
+				limit = {
+					NOT = { has_variable = bpm_hungarian_revolution_started }
+				}
+			}
+			set_variable = bpm_hungarian_revolution_started
+		}
+		if = {
+			limit = {
+				exists = c:HUN
+				c:HUN = { is_direct_subject_of = c:AUS }
+				OR = {
+					AND = {
+						scope:initiator = c:HUN
+						scope:target = c:AUS
+					}
+					AND = {
+						scope:initiator = c:AUS
+						scope:target = c:HUN
+					}
+				}
+			}
+			save_scope_as = diplomatic_play
+			c:HUN = { trigger_event = betterah_hungary.11 }
+			if = {
+				limit = {
+					exists = c:TRS
+					c:TRS = {is_direct_subject_of = c:AUS}
+				}
+				c:TRS = {
+					trigger_event = betterah_transylvania.1 #Transylvania can join hungary at revolution start
+				}
+			}
+		}
+	}
+}
