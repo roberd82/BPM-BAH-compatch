@@ -1,4 +1,4 @@
-﻿# z at the beginning of filename, so we are last in ascii load order.
+﻿# z at the beginning of filename, so we are last in ascii load order. (x3)
 
 # Overwriting Petőfi with our own version
 agitator_sandor_petofi = { # Sándor Petőfi
@@ -35,7 +35,7 @@ agitator_sandor_petofi = { # Sándor Petőfi
 		chance = 100
 	}
 }
-agitator_lajos_kossuth = {
+agitator_lajos_kossuth = { # Lajos Kossuth
 	first_name = Lajos
 	last_name = Kossuth
 	historical = yes
@@ -57,8 +57,8 @@ agitator_lajos_kossuth = {
 			name = is_married
 		}
 	}
-	interest_group_leader_usage = { #just change from agitator_usage to interes_group_leader_usage to make him a leader and not an agitator
-		country_trigger = { #removed VotP requirement, pecause no longer an agitator
+	interest_group_leader_usage = {
+		country_trigger = { # removed VotP requirement, pecause no longer an agitator
 			exists = c:HUN
 			this = c:HUN
 		}

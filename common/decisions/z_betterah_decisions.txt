@@ -1,0 +1,57 @@
+﻿# Austria decisions:
+betterah_control_hungarian_government_decision = {  # remove the liberals from the hungarian government
+	is_shown = {
+		exists = c:AUS
+		exists = c:HUN
+		this = c:AUS
+		c:HUN = {
+			is_direct_subject_of = c:AUS
+			NOT = { is_diplomatic_play_enemy_of = c:AUS } # if we are at war we cannot influence them
+			any_interest_group = {  # we need to check if there are actual liberals in the govt
+				is_in_government = yes
+				leader = {
+					OR = {
+						has_ideology = ideology:ideology_republican_leader
+						has_ideology = ideology:ideology_radical
+						has_ideology = ideology:ideology_reformer
+						has_ideology = ideology:ideology_social_democrat
+						has_ideology = ideology:ideology_communist
+						has_ideology = ideology:ideology_vanguardist
+						has_ideology = ideology:ideology_anarchist
+					}
+				}
+			}
+		}
+		NOT = { has_variable = bah_controlled_hungarian_government }
+	}
+
+	possible = {
+		this = c:AUS
+		authority > 0
+		influence > 0
+	}
+	
+	when_taken = {
+		set_variable = bah_controlled_hungarian_government
+		
+		c:HUN = {
+			trigger_event = {
+				id = betterah_hungary.2  # they get a demand
+				days = 0
+			}
+		}
+		
+		add_modifier = {
+			name = modifier_hungary_curtailed
+			months = normal_modifier_time
+		}
+	}
+
+	ai_chance = {
+		base = 1
+		modifier = {
+			trigger = { authority > 300 }
+			add = 10
+		}		
+	}
+}
