@@ -9,17 +9,20 @@
 			limit = {
 				exists = c:HUN
 				this = c:HUN
-				NOT = { has_variable = bpm_hungarian_revolution_started }
+				c:AUS = {
+					NOT = { has_variable = bpm_hungarian_revolution_started }
+				}
 			}
 			trigger_event = { id = betterah_hungary.1 days = 2 popup = yes}
 		}
-		#if = {
-		#	limit = {
-		#		exists = c:AUS
-        #    	this = c:AUS
-		#	}
-		#	trigger_event = { id = peoples_springtime.9 days = 90 popup = yes}
-		#}
+		else_if = {
+			limit = {
+				exists = c:AUS
+            	this = c:AUS
+				has_variable = bpm_hungarian_revolution_started
+			}
+			remove_variable = bpm_hungarian_revolution_started
+		}
 		else_if = {
 			limit = {
 				exists = c:PRU

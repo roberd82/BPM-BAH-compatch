@@ -3,6 +3,104 @@
 
 	group = je_group_historical_content
 
+	on_monthly_pulse = {
+		effect = {
+			set_variable = { # This variable will get added to the weekly liberty desire of Hungary
+				name = ah_hungary_integration_var
+				value = 0
+			}
+			if = {
+				limit = {
+					cu:hungarian = {
+						culture_is_discriminated_in = ROOT
+					}
+				}
+				change_variable = {
+					name = ah_hungary_integration_var
+					add = 0.1
+				}
+			}
+			if = {  # liberals in the országgyűlés
+				limit = {
+					c:HUN = {
+						any_interest_group = {
+							is_in_government = yes
+							leader = {
+								OR = {
+									bpm_leader_is_liberal = yes
+									bpm_leader_is_socialist = yes
+								}
+							}
+						}
+					}
+				}
+				change_variable = {
+					name = ah_hungary_integration_var
+					add = 0.05
+				}
+			}
+			if = {  # royalists in the országgyűles
+				limit = {
+					c:HUN = {
+						any_interest_group = {
+							is_in_government = yes
+							leader = {
+								bpm_leader_is_traditional_right = yes
+							}
+						}
+					}
+				}
+				change_variable = {
+					name = ah_hungary_integration_var
+					add = -0.15
+				}
+			}
+			
+			if = {  # royalists in the empire's council
+				limit = {
+					any_interest_group = {
+						is_in_government = yes
+						leader = {
+							bpm_leader_is_traditional_right = yes
+						}
+					}
+				}
+				change_variable = {
+					name = ah_hungary_integration_var
+					add = -0.1
+				}
+			}
+			if = {  # hungary is democratizing
+				limit = {
+					c:HUN = {
+						NOT = {
+							OR = {
+								has_law = law_type:law_landed_voting
+								has_law = law_type:law_oligarchy
+								has_law = law_type:law_autocracy
+								has_law = law_type:law_military_junta
+							}
+						}
+					}
+				}
+				change_variable = {
+					name = ah_hungary_integration_var
+					add = 0.15
+				}
+			}
+			if = {  # Austria owns cental hungary directly
+				limit = {
+					owns_entire_state_region = STATE_CENTRAL_HUNGARY
+				}
+				change_variable = {
+					name = ah_hungary_integration_var
+					add = -0.1
+				}
+			}
+			je:je_dual_monarchy = { set_bar_progress = { value = c:AUS.var:ah_hungary_integration_var name = betterah_hungary_liberalisation_progress_bar } }
+		}
+	}
+
 	complete = {
 		has_global_variable = peoples_springtime_happened
 		has_technology_researched = pan-nationalism
@@ -17,13 +115,11 @@
 			has_law = law_type:law_national_supremacy
 			has_law = law_type:law_ethnostate
 		}
-		OR = {
-			NOT = {
-				has_variable = bpm_hungarian_revolution_started # can only form Austria-Hungary after putting down the revolution
-			}
-			c:HUN = {
-				is_direct_subject_of = c:AUS # or franticly negotiated for a personal union (or has Hungary as subject for any other reason)
-			}
+		NOT = {
+			has_variable = bpm_hungarian_revolution_started # can only form Austria-Hungary after putting down the revolution
+		}
+		c:HUN = {
+			is_direct_subject_of = c:AUS
 		}
 	}
 
@@ -41,8 +137,13 @@
 					value > 0.5
 				}
 			}
-			c:HUN ?= {
-				liberty_desire >= 75
+			AND = {
+				NOT = {
+					has_variable = bpm_hungarian_revolution_started # can only form Austria-Hungary after putting down the revolution
+				}
+				c:HUN ?= {
+					liberty_desire >= 75
+				}
 			}
 		}
 	}
@@ -74,9 +175,6 @@
 			c:HUN = {
 				is_direct_subject_of = c:AUS
 			}
-		}
-		NOT = {
-			has_variable = bpm_hungarian_revolution_started # keep the journal entry active durring the revolution, so the historical path can be achieved
 		}
 	}
 

@@ -108,7 +108,7 @@ peoples_springtime.10 = {
 			change_infamy = -250
 			trigger_event = { 
 				id = peoples_springtime.11
-				days = 90
+				days = 40
 				popup = yes 
 			}
 			every_country = {
