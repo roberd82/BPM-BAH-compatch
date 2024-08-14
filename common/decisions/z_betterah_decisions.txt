@@ -53,4 +53,8 @@ betterah_control_hungarian_government_decision = {  # remove the liberals from t
 
 betterah_loose_austro_hungarian_compromise_decision = { # Historical path. If austria controls hungary directly and there is dissent, they can release hungary as puppet and form austria hungary
 	# content already covered by BPM's journal entry
+	is_shown = {
+		NOT = { exists = c:AUS }
+		this = c:AUS
+	}
 }
