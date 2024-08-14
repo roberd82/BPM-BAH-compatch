@@ -1,8 +1,5 @@
 ﻿betterah_hungarian_revolution_on_action = {
 	effect = {
-		c:AUS = {
-			set_variable = bpm_hungarian_revolution_started
-		}
 		if = {
 			limit = {
 				exists = c:HUN
@@ -17,6 +14,9 @@
 						scope:target = c:HUN
 					}
 				}
+			}
+			c:AUS = {
+				set_variable = bpm_hungarian_revolution_started
 			}
 			save_scope_as = diplomatic_play
 			c:HUN = { trigger_event = betterah_hungary.11 }
