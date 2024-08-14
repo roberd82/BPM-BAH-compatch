@@ -28,7 +28,7 @@ peoples_springtime.9 = {
 
 		trigger_event = { 
 			id = peoples_springtime.10
-			months = 5
+			months = 4
 			popup = yes 
 		}
 	}
@@ -93,8 +93,9 @@ peoples_springtime.10 = {
 
 		create_diplomatic_play = {
 			name = hungarian_revolution
+			war = no
 			type = dp_annex_war
-			escalation = 40 # original 80
+			escalation = 50 # original 80
 			target_state = s:STATE_CENTRAL_HUNGARY.region_state:HUN
 
 			add_war_goal = {

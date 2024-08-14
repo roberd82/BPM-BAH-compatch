@@ -201,7 +201,7 @@ dual_monarchy.2 = {
 
 #April Laws in Hungarian Government,
 #stop them or let them be
-dual_monarchy.3 = {
+dual_monarchy.3 = { # event content relocated to peoples_springtime.9 and 10
 #	type = country_event
 #
 #	title = dual_monarchy.3.t
