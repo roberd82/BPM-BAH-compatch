@@ -43,10 +43,6 @@ betterah_hungary.1 = { # on liberal revolution option to accept demands and enac
 		name = betterah_hungary.1.a
 		default_option = yes
 
-		c:AUS = {
-			set_variable = bpm_hungarian_revolution_started
-		}
-
 		if = {
 			limit = {
 				NOT = { has_global_variable = peoples_springtime_happening }
@@ -78,7 +74,7 @@ betterah_hungary.1 = { # on liberal revolution option to accept demands and enac
 		c:AUS = {
 			trigger_event = {
 				id = peoples_springtime.9  # Austria will get a chance to intervene
-				days = 30
+				days = 0
 			}
 		}
 		ai_chance = {

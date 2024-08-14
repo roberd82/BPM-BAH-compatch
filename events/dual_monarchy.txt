@@ -29,6 +29,10 @@ dual_monarchy.2 = {
 	option = { # try to annex Hungary
 		name = dual_monarchy.2.a
 		default_option = yes
+
+		s:STATE_TRANSDANUBIA = {
+			remove_homeland = cu:south_german
+		}
 		
 		create_diplomatic_play = {
 			name = hungarian_revolution
@@ -43,12 +47,11 @@ dual_monarchy.2 = {
 				target_country = c:AUS
 			}
 		}
-
 		hidden_effect = {
 			change_infamy = -250
 			trigger_event = { 
 				id = peoples_springtime.11
-				days = 90
+				days = 120
 				popup = yes 
 			}
 			every_country = {
@@ -66,4 +69,8 @@ dual_monarchy.2 = {
 			pop_type = aristocrats
 		}
 	}
+}
+
+dual_monarchy.3 = {
+	# content moved up to peoples_springtime.9
 }

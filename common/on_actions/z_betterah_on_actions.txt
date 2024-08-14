@@ -1,11 +1,6 @@
 ﻿betterah_hungarian_revolution_on_action = {
 	effect = {
 		c:AUS = {
-			if = {
-				limit = {
-					NOT = { has_variable = bpm_hungarian_revolution_started }
-				}
-			}
 			set_variable = bpm_hungarian_revolution_started
 		}
 		if = {

@@ -178,6 +178,8 @@
 		}
 	}
 
+	scripted_progress_bar = betterah_hungary_liberalisation_progress_bar
+
 	weight = 100
 	should_be_pinned_by_default = yes
 }

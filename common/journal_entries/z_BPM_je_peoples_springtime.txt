@@ -17,14 +17,6 @@
 		}
 		else_if = {
 			limit = {
-				exists = c:AUS
-            	this = c:AUS
-				has_variable = bpm_hungarian_revolution_started
-			}
-			remove_variable = bpm_hungarian_revolution_started
-		}
-		else_if = {
-			limit = {
 				exists = c:PRU
 				this = c:PRU
 			}
