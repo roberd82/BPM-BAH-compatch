@@ -42,6 +42,13 @@ peoples_springtime.9 = {
 			base = 75
 		}
 
+		c:AUS = {
+			create_diplomatic_pact = {
+				country = c:HUN
+				type = betterah_loose_personal_union
+			}
+		}
+
 		create_diplomatic_play = {
 			name = hungarian_revolution
 			type = dp_annex_war
