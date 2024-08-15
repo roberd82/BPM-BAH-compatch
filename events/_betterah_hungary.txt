@@ -74,7 +74,7 @@ betterah_hungary.1 = { # on liberal revolution option to accept demands and enac
 		c:AUS = {
 			trigger_event = {
 				id = peoples_springtime.9  # Austria will get a chance to intervene
-				days = 0
+				days = 2
 			}
 		}
 		ai_chance = {

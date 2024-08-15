@@ -28,6 +28,11 @@ peoples_springtime.9 = {
 			days = 120
 			popup = yes 
 		}
+		c:HUN = {
+			call_election = {
+				months = 3
+			}
+		}
 	}
 
 	option = {
