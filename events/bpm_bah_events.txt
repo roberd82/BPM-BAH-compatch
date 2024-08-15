@@ -102,49 +102,13 @@ bpm_bah_events.2 = {
 
 	option = {
 		trigger = {
-			OR = {
-				this = c:HUN
-				AND = {
-					this = c:TRS
-					has_law = law_type:law_monarchy
-				}
-			}
+			this = c:HUN
 		}
-		name = {
-			first_valid = {
-				triggered_desc = {
-					desc = bpm_bah_events.2.b # elect Széchenyi as king/president
-					trigger = {
-						this = c:HUN
-					}
-				}
-				triggered_desc = {
-					desc = bpm_bah_events.2.b2 # TRS pu with HUN
-					trigger = {
-						this = c:TRS
-					}
-				}
-			}
-		}
-		if = {
-			limit = {
-				this = c:HUN
-			}
-			ig:ig_industrialists = {
-				leader = {
-					set_character_as_ruler = yes
-				}
-			}
-		}
-		if = {
-			limit = {
-				this = c:TRS
-			}
-			c:HUN = {
-				create_diplomatic_pact = {
-					country = c:TRS
-					type = personal_union
-				}
+		name = bpm_bah_events.2.b # elect Széchenyi as king/president
+
+		ig:ig_industrialists = {
+			leader = {
+				set_character_as_ruler = yes
 			}
 		}
 	}
@@ -159,6 +123,21 @@ bpm_bah_events.2 = {
 		ig:ig_radicals = {
 			leader = {
 				set_character_as_ruler = yes
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			this = c:TRS
+			has_law = law_type:law_monarchy
+		}
+		name = bpm_bah_events.2.e # TRS pu with HUN
+
+		c:HUN = {
+			create_diplomatic_pact = {
+				country = c:TRS
+				type = personal_union
 			}
 		}
 	}
