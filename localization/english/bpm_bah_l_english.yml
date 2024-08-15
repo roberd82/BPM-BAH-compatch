@@ -1,0 +1,9 @@
+﻿l_english:
+ #hungary events:
+ 
+ bpm_bah_events.1.t:0 "The Hungarian Revolution is Victorious!"
+ bpm_bah_events.1.d:0 "Hungary successfully became free from grasps the Habsburg dynasty, and the Parliament chose a local noble as a temporarily head of state, until they decide about our new form of government."
+ bpm_bah_events.1.f:0 "With the revolutionary war won, the people of Hungary wonder what is next for their coutry."
+ bpm_bah_events.1.a:0 "Keep the Monarch as a symbolic head of state."
+ bpm_bah_events.1.b:0 "The people will vote for a President."
+ bpm_bah_events.1.c:0 "The parliament will elect a Chancellor."

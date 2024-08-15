@@ -1,0 +1,26 @@
+﻿je_hungary_resistance = {
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	group = je_group_historical_content
+
+	complete = {
+			NOT = { is_direct_subject_of = c:AUS }
+	}
+
+	on_complete = {
+		trigger_event = {
+			id = bpm_bah_events.1
+		}
+	}
+
+	fail = {
+		NOT = {
+			exists = c:HUN
+		}
+	}
+
+	scripted_progress_bar = betterah_hungary_liberalisation_progress_bar
+
+	weight = 100
+	should_be_pinned_by_default = yes
+}

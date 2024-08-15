@@ -1,0 +1,103 @@
+namespace = bpm_bah_events
+
+bpm_bah_events.1 = {
+	type = country_event
+
+	title = bpm_bah_events.1.t
+	desc = bpm_bah_events.1.d
+	flavor = bpm_bah_events.1.f
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_ruler_speaking_to_people.bk2"
+	}
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/leader_speaking_to_a_group_of_people"
+
+	duration = 1
+
+	dlc = dlc_bpm
+
+	trigger = {
+		# triggered by je_hungary_resistance
+	}
+
+	option = {
+		name = bpm_bah_events.1.a # stay monarchy for now
+		trigger_event = { 
+			id = bpm_bah_events.2
+		}
+	}
+
+	option = {
+		name = bpm_bah_events.1.b # become presidential republic
+		c:HUN = {
+			activate_law = law_type:law_presidential_republic
+		}
+		trigger_event = { 
+			id = bpm_bah_events.2
+		}
+	}
+
+	option = {
+		name = bpm_bah_events.1.c # become parliamentary republic
+		c:HUN = {
+			activate_law = law_type:law_parliamentary_republic
+		}
+	}
+}
+
+bpm_bah_events.2 = {
+	type = country_event
+
+	title = bpm_bah_events.2.t
+	desc = bpm_bah_events.2.d
+	flavor = bpm_bah_events.2.f
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_ruler_speaking_to_people.bk2"
+	}
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/leader_speaking_to_a_group_of_people"
+
+	duration = 1
+
+	dlc = dlc_bpm
+
+	trigger = {
+		# triggered by bpm_bah_events.1.a and bpm_bah_events.1.b
+	}
+
+	option = {
+		name = bpm_bah_events.2.a # keep the temp ruler
+
+	}
+
+	option = {
+		name = bpm_bah_events.2.b # elect Széchenyi as king/president
+
+		ig:ig_industrialists = {
+			leader = {
+				set_character_as_ruler = yes
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			has_law = law_type:law_presidential_republic
+		}
+		name = bpm_bah_events.2.c # elect Kossuth as president
+
+		ig:ig_radicals = {
+			leader = {
+				set_character_as_ruler = yes
+			}
+		}
+	}
+}
