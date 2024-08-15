@@ -14,7 +14,8 @@
 			}
 			trigger_event = {
 				id = bpm_bah_events.1
-				days = 31
+				days = 33
+				popup = yes 
 			}
 		}
 	}

@@ -37,6 +37,8 @@ bpm_bah_events.1 = {
 		}
 		trigger_event = { 
 			id = bpm_bah_events.2
+			days = 2
+			popup = yes 
 		}
 	}
 
@@ -48,6 +50,8 @@ bpm_bah_events.1 = {
 		default_option = yes
 		trigger_event = { 
 			id = bpm_bah_events.2
+			days = 2
+			popup = yes 
 		}
 		activate_law = law_type:law_presidential_republic
 	}
@@ -106,12 +110,26 @@ bpm_bah_events.2 = {
 				}
 			}
 		}
+		name = {
+			first_valid = {
+				triggered_desc = {
+					desc = bpm_bah_events.2.b # elect Széchenyi as king/president
+					trigger = {
+						this = c:HUN
+					}
+				}
+				triggered_desc = {
+					desc = bpm_bah_events.2.b2 # TRS pu with HUN
+					trigger = {
+						this = c:TRS
+					}
+				}
+			}
+		}
 		if = {
 			limit = {
 				this = c:HUN
 			}
-			name = bpm_bah_events.2.b # elect Széchenyi as king/president
-
 			ig:ig_industrialists = {
 				leader = {
 					set_character_as_ruler = yes
@@ -122,8 +140,6 @@ bpm_bah_events.2 = {
 			limit = {
 				this = c:TRS
 			}
-			name = bpm_bah_events.2.b2 # TRS pu with HUN
-
 			c:HUN = {
 				create_diplomatic_pact = {
 					country = c:TRS
