@@ -21,31 +21,49 @@ bpm_bah_events.1 = {
 	dlc = dlc_bpm
 
 	trigger = {
-		# triggered by je_hungary_resistance
+		# triggered by je_hungary_resistance or je_transylvania_resistance
 	}
 
 	option = {
 		name = bpm_bah_events.1.a # stay monarchy for now
+		if = {
+			limit = {
+				this = c:TRS
+				c:HUN = {
+					has_law = law_type:law_monarchy
+				}
+			}
+			default_option = yes
+		}
 		trigger_event = { 
 			id = bpm_bah_events.2
 		}
 	}
 
 	option = {
-		name = bpm_bah_events.1.b # become presidential republic
-		c:HUN = {
-			activate_law = law_type:law_presidential_republic
+		trigger = {
+			this = c:HUN
 		}
+		name = bpm_bah_events.1.b # become presidential republic
+		default_option = yes
 		trigger_event = { 
 			id = bpm_bah_events.2
 		}
+		activate_law = law_type:law_presidential_republic
 	}
 
 	option = {
 		name = bpm_bah_events.1.c # become parliamentary republic
-		c:HUN = {
-			activate_law = law_type:law_parliamentary_republic
+		if = {
+			limit = {
+				this = c:TRS
+				c:HUN = {
+					NOT = { has_law = law_type:law_monarchy }
+				}
+			}
+			default_option = yes
 		}
+		activate_law = law_type:law_parliamentary_republic
 	}
 }
 
@@ -79,6 +97,9 @@ bpm_bah_events.2 = {
 	}
 
 	option = {
+		trigger = {
+			this = c:HUN
+		}
 		name = bpm_bah_events.2.b # elect Széchenyi as king/president
 
 		ig:ig_industrialists = {
@@ -90,6 +111,7 @@ bpm_bah_events.2 = {
 
 	option = {
 		trigger = {
+			this = c:HUN
 			has_law = law_type:law_presidential_republic
 		}
 		name = bpm_bah_events.2.c # elect Kossuth as president
@@ -97,6 +119,20 @@ bpm_bah_events.2 = {
 		ig:ig_radicals = {
 			leader = {
 				set_character_as_ruler = yes
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			this = c:TRS
+			has_law = law_type:law_monarchy
+		}
+		name = bpm_bah_events.2.d # TRS pu with HUN
+		c:HUN = {
+			create_diplomatic_pact = {
+				country = c:TRS
+				type = personal_union
 			}
 		}
 	}
