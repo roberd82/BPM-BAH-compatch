@@ -14,7 +14,7 @@
 			}
 			trigger_event = {
 				id = bpm_bah_events.1
-				days = 30
+				days = 31
 			}
 		}
 	}
