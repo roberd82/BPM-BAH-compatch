@@ -1,5 +1,11 @@
 ﻿namespace = dual_monarchy
 
+# Dual Monarchy event
+# Austria is given the option to either create Austria hungary or annex hungary
+#dual_monarchy.1 = {
+#	# using the event from BPM
+#}
+
 #Liberals in Hungarian Government,
 #stop them or let them be
 dual_monarchy.2 = {
@@ -71,6 +77,6 @@ dual_monarchy.2 = {
 	}
 }
 
-dual_monarchy.3 = {
-	# content moved up to peoples_springtime.9
-}
+#dual_monarchy.3 = {
+#	# content moved up to peoples_springtime.9
+#}
