@@ -28,17 +28,22 @@ bpm_bah_events.1 = {
 		name = bpm_bah_events.1.a # stay monarchy for now
 		if = {
 			limit = {
-				this = c:TRS
-				c:HUN = {
-					has_law = law_type:law_monarchy
+				OR = {
+					this = c:HUN
+					AND = {
+						this = c:TRS
+						c:HUN = {
+							has_law = law_type:law_monarchy
+						}
+					}
 				}
 			}
 			default_option = yes
-		}
-		trigger_event = { 
-			id = bpm_bah_events.2
-			days = 2
-			popup = yes 
+			trigger_event = { 
+				id = bpm_bah_events.2
+				days = 2
+				popup = yes
+			}
 		}
 	}
 
