@@ -85,6 +85,6 @@ peoples_springtime.9 = {
 }
 
 # hun revolution
-#peoples_springtime.10 = {
-#	# content moved up to peoples_springtime.9.a
-#}
+peoples_springtime.10 = {
+	# content moved up to peoples_springtime.9.a
+}
