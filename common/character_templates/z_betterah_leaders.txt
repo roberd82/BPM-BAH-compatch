@@ -1,0 +1,28 @@
+﻿betterah_dessewffy_character_template = {
+	first_name = Aurel
+	last_name = Dessewffy
+	historical = yes
+	culture = cu:hungarian
+	female = no
+	religion = rel:catholic
+	ideology = ideology:ideology_royalist
+	interest_group = ig_conservatives # changed from landowners
+	birth_date = 1808.7.27
+	#dna = dna_emperor_ferdinand_01 TODO: DNA FOR Dessewffy
+	traits = {
+		cautious
+		sickly
+	}
+	interest_group_leader_usage = {
+		country_trigger = {
+			exists = c:HUN
+			this = c:HUN
+		}
+		interest_group_trigger = {
+			is_interest_group_type = ig_conservatives # changed from landowners
+		}
+		earliest_usage_date = 1836.1.1
+		latest_usage_date = 1842.2.9
+		chance = 100
+	}
+}

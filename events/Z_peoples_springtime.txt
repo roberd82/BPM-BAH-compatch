@@ -39,9 +39,7 @@ peoples_springtime.9 = {
 
 		create_diplomatic_play = {
 			name = hungarian_revolution
-			war = no
 			type = dp_annex_war
-			#escalation = 80
 			target_state = s:STATE_CENTRAL_HUNGARY.region_state:HUN
 
 			add_war_goal = {

@@ -3,6 +3,9 @@
 		effect_starting_technology_tier_2_tech = yes
 		effect_starting_politics_conservative = yes
 
+		add_technology_researched = atmospheric_engine # same as AUS
+		add_technology_researched = central_archives # from VTM
+
 		set_tax_level = medium
 
 		# Laws 
@@ -21,7 +24,11 @@
 		activate_law = law_type:law_serfdom #serfdom was alive an well in hungary.
 		#writing this i realize how backwards hungary was at this time.
 
-		activate_law = law_type:law_devolved # BPM
+		activate_law = law_type:law_devolved # from zzz_bpm_country_specific_global.txt
+		set_institution_investment_level = {
+			institution = institution_centralization
+			level = 1
+		}
 
 		set_institution_investment_level = {
 			institution = institution_schools

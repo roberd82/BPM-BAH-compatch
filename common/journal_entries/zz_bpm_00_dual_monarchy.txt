@@ -138,8 +138,9 @@
 				}
 			}
 			AND = {
+				has_global_variable = peoples_springtime_happened # only after things calmed down
 				NOT = {
-					has_variable = bpm_hungarian_revolution_started # can only form Austria-Hungary after putting down the revolution
+					has_variable = bpm_hungarian_revolution_started # only after putting down the revolution (or avoiding it)
 				}
 				c:HUN ?= {
 					liberty_desire >= 75

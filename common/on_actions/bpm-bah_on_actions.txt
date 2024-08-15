@@ -22,6 +22,12 @@ bpm-bah_hungarian_revolution_on_action = {
 				}
 			}
 			c:AUS = {
+				create_diplomatic_pact = {
+					country = c:HUN
+					type = betterah_loose_personal_union
+				}
+			}
+			c:AUS = {
 				set_variable = bpm_hungarian_revolution_started
 			}
 		}

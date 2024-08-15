@@ -5,6 +5,7 @@
 
 	immediate = {
 		trigger_event = { id = 1848.4 }
+		# BPM-BAH start
 		if = {
 			limit = {
 				exists = c:HUN
@@ -15,6 +16,14 @@
 			}
 			trigger_event = { id = betterah_hungary.1 days = 2 popup = yes}
 		}
+		#if = {
+		#	limit = {
+		#		exists = c:AUS
+		#		this = c:AUS
+		#	}
+		#	trigger_event = { id = peoples_springtime.9 days = 90 popup = yes}
+		#}
+		# BPM-BAH end
 		else_if = {
 			limit = {
 				exists = c:PRU
