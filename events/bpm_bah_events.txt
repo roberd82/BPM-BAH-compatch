@@ -1,5 +1,6 @@
 namespace = bpm_bah_events
 
+# After revolution content
 bpm_bah_events.1 = {
 	type = country_event
 
@@ -38,7 +39,15 @@ bpm_bah_events.1 = {
 					}
 				}
 			}
-			default_option = yes
+			if = {
+				limit = {
+					this = c:TRS
+					c:HUN = {
+						has_law = law_type:law_monarchy
+					}
+				}
+				default_option = yes
+			}
 			trigger_event = { 
 				id = bpm_bah_events.2
 				days = 2
@@ -59,6 +68,9 @@ bpm_bah_events.1 = {
 			popup = yes 
 		}
 		activate_law = law_type:law_presidential_republic
+		add_journal_entry = {
+			type = je_abolish_monarchy
+		}
 	}
 
 	option = {
@@ -73,6 +85,9 @@ bpm_bah_events.1 = {
 			default_option = yes
 		}
 		activate_law = law_type:law_parliamentary_republic
+		add_journal_entry = {
+			type = je_abolish_monarchy
+		}
 	}
 }
 
@@ -102,14 +117,14 @@ bpm_bah_events.2 = {
 
 	option = {
 		name = bpm_bah_events.2.a # keep the temp ruler
-
+		default_option = yes
 	}
 
 	option = {
 		trigger = {
 			this = c:HUN
 		}
-		name = bpm_bah_events.2.b # elect Széchenyi as king/president
+		name = bpm_bah_events.2.b # elect Széchenyi as king/first president
 
 		ig:ig_industrialists = {
 			leader = {
@@ -123,7 +138,7 @@ bpm_bah_events.2 = {
 			this = c:HUN
 			has_law = law_type:law_presidential_republic
 		}
-		name = bpm_bah_events.2.c # elect Kossuth as president
+		name = bpm_bah_events.2.c # elect Kossuth as first president
 
 		ig:ig_radicals = {
 			leader = {
@@ -136,6 +151,9 @@ bpm_bah_events.2 = {
 		trigger = {
 			this = c:TRS
 			has_law = law_type:law_monarchy
+			c:HUN = {
+				has_law = law_type:law_monarchy
+			}
 		}
 		name = bpm_bah_events.2.e # TRS pu with HUN
 
