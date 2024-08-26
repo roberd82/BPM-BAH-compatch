@@ -13,6 +13,12 @@
 				c:AUS = {
 					NOT = { has_variable = bpm_hungarian_revolution_started }
 				}
+				c:HUN = {
+					NOR = {
+						has_law = law_type:law_universal_suffrage
+						has_law = law_type:law_census_voting
+					}
+				}
 			}
 			trigger_event = { id = betterah_hungary.1 days = 2 popup = yes}
 		}

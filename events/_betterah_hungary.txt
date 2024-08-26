@@ -164,11 +164,9 @@ betterah_hungary.2 = { # Austria wants us to remove our liberal igs from governm
 			limit = {
 				is_marginal = no
 				leader = {
-					NOT = {
-						OR = {
-							bpm_leader_is_liberal = yes
-							bpm_leader_is_socialist = yes
-						}
+					NOR = {
+						bpm_leader_is_liberal = yes
+						bpm_leader_is_socialist = yes
 					}
 				}
 			}
