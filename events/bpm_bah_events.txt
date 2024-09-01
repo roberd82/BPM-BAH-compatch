@@ -32,7 +32,15 @@ bpm_bah_events.1 = {
 				OR = {
 					this = c:HUN
 					AND = {
-						this = c:TRS
+						OR = {
+							this = c:TRS
+							AND = {
+								this = c:CRO
+								c:CRO = {
+									is_direct_subject_of = c:HUN
+								}
+							}
+						}
 						c:HUN = {
 							has_law = law_type:law_monarchy
 						}
@@ -41,7 +49,10 @@ bpm_bah_events.1 = {
 			}
 			if = {
 				limit = {
-					this = c:TRS
+					OR = {
+						this = c:TRS
+						this = c:CRO
+					}
 					c:HUN = {
 						has_law = law_type:law_monarchy
 					}
@@ -58,14 +69,27 @@ bpm_bah_events.1 = {
 
 	option = {
 		trigger = {
-			this = c:HUN
+			OR = {
+				this = c:HUN
+				AND = {
+					this = c:CRO
+					c:CRO = {
+						NOT = { is_direct_subject_of = c:HUN }
+					}
+				}
+			}
 		}
 		name = bpm_bah_events.1.b # become presidential republic
 		default_option = yes
-		trigger_event = { 
-			id = bpm_bah_events.2
-			days = 2
-			popup = yes 
+		if = {
+			limit = {
+				this = c:HUN
+			}
+			trigger_event = {
+				id = bpm_bah_events.2
+				days = 2
+				popup = yes
+			}
 		}
 		activate_law = law_type:law_presidential_republic
 		add_journal_entry = {
@@ -77,7 +101,15 @@ bpm_bah_events.1 = {
 		name = bpm_bah_events.1.c # become parliamentary republic
 		if = {
 			limit = {
-				this = c:TRS
+				OR = {
+					this = c:TRS
+					AND = {
+						this = c:CRO
+						c:CRO = {
+							is_direct_subject_of = c:HUN
+						}
+					}
+				}
 				c:HUN = {
 					NOT = { has_law = law_type:law_monarchy }
 				}
@@ -149,18 +181,43 @@ bpm_bah_events.2 = {
 
 	option = {
 		trigger = {
-			this = c:TRS
+			OR = {
+				this = c:TRS
+				AND = {
+					this = c:CRO
+					c:CRO = {
+						is_direct_subject_of = c:HUN
+					}
+				}
+			}
 			has_law = law_type:law_monarchy
 			c:HUN = {
 				has_law = law_type:law_monarchy
 			}
 		}
-		name = bpm_bah_events.2.e # TRS pu with HUN
+		
+		name = bpm_bah_events.2.e # pu with HUN
 
-		c:HUN = {
-			create_diplomatic_pact = {
-				country = c:TRS
-				type = personal_union
+		if = {
+			limit = {
+				this = c:TRS
+			}
+			c:HUN = {
+				create_diplomatic_pact = {
+					country = c:TRS
+					type = personal_union
+				}
+			}
+		}
+		if = {
+			limit = {
+				this = c:CRO
+			}
+			c:HUN = {
+				create_diplomatic_pact = {
+					country = c:CRO
+					type = personal_union
+				}
 			}
 		}
 	}
